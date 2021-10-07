@@ -823,6 +823,7 @@ int			vflag;		/* verbose */
 int			Vflag;		/* special verbose */
 int			sixflag;	/* 6th Edition archives */
 int			action;		/* -i -o -p */
+int			interactive = 1;
 long long		errcnt;		/* error status */
 static unsigned long long	maxpath;/* maximum path length with -i */
 static uint32_t		maxino;		/* maximum inode number with -i */
@@ -2376,11 +2377,13 @@ newmedia(int err)
 		warnx("I/O error on \"%s\", errno %d, %s\a", mesf,
 				err, strerror(err));
 	mediacnt++;
+	if (!interactive)
+		exit(errcnt != 0 ? sysv3 ? 1 : 2 : 0);
 	while (mfl < 0) {
-		if (Iflag || Oflag)
+		if (action == 'i' ? Iflag : Oflag)
 			fprintf(stderr, Mflag ? Mflag :
-					"Change to part %d and press "
-					"RETURN key. [q] ", mediacnt);
+					"Change to part %d and press RETURN "
+					"key. Input \".\" to quit. ", mediacnt);
 		else
 			fprintf(stderr, sysv3 ? "If you want to go on, "
 					"type device/file name when ready.\n" :
@@ -2400,15 +2403,15 @@ newmedia(int err)
 		if (j != 1)
 			goto cantrt;
 		answer[i] = 0;
-		if (Iflag || Oflag) {
+		if (action == 'i' ? Iflag : Oflag) {
 			if (answer[0] == '\0')
-				snprintf(answer, sizeof answer, "%s", Iflag ? Iflag :
+				snprintf(answer, sizeof answer, "%s", action == 'i' ? Iflag :
 						Oflag);
-			else if (answer[0] == 'q')
+			else if (answer[0] == '.' && answer[1] == 0)
 				exit(errcnt != 0 ? sysv3 ? 1 : 2 : 0);
-			else if (Iflag)
+			else if (action == 'i')
 				Iflag = sstrdup(answer);
-			else if (Oflag)
+			else
 				Oflag = sstrdup(answer);
 		} else if (answer[0] == '\0')
 			return;

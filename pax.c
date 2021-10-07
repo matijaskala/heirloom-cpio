@@ -92,7 +92,7 @@ static void		parsesub(char *);
 void
 pax_flags(int ac, char **av)
 {
-	const char	optstring[] = "rwab:cdf:HikKlLno:p:s:tuvx:X";
+	const char	optstring[] = "rwab:cdf:HikKlLno:Op:s:tuvx:X";
 	int	i;
 	int	illegal = 0;
 	char	*x;
@@ -147,7 +147,7 @@ pax_flags(int ac, char **av)
 			pax_dflag = 1;
 			break;
 		case 'f':
-			Oflag = optarg;
+			Iflag = Oflag = optarg;
 			break;
 		case 'H':
 			pax_Hflag = 1;
@@ -172,6 +172,9 @@ pax_flags(int ac, char **av)
 			break;
 		case 'o':
 			pax_options(optarg, 1);
+			break;
+		case 'O':
+			interactive = 0;
 			break;
 		case 'p':
 			setpres(optarg);
@@ -272,10 +275,10 @@ void
 pax_usage(void)
 {
 	fprintf(stderr, "USAGE:\n\
-\tpax [-cdnvK] [-b size] [-f file] [-s replstr] [-x hdr] [patterns]\n\
-\tpax -r[cdiknuvK] [-b size] [-f file] [-p priv] [-s replstr] [-x hdr] [patterns]\n\
-\tpax -w[adituvLX] [-b size] [-f file] [-s replstr] [-x hdr] [files]\n\
-\tpax -rw[diklntuvLX] [-p priv] [-s replstr] [files] directory\n");
+\tpax [-cdnvKO] [-b size] [-f file] [-s replstr] [-x hdr] [patterns]\n\
+\tpax -r[cdiknuvKO] [-b size] [-f file] [-p priv] [-s replstr] [-x hdr] [patterns]\n\
+\tpax -w[adituvLOX] [-b size] [-f file] [-s replstr] [-x hdr] [files]\n\
+\tpax -rw[diklntuvLOX] [-p priv] [-s replstr] [files] directory\n");
 	exit(1);
 }
 

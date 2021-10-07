@@ -166,6 +166,7 @@ extern int		vflag;
 extern int		Vflag;
 extern int		sixflag;
 extern int		action;
+extern int		interactive;
 extern long long	errcnt;
 extern int		blksiz;
 extern int		sysv3;

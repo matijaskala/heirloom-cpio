@@ -27,26 +27,26 @@ pax \- portable archive interchange
 .HP
 .nh
 .ad l
-\fBpax\fR [\fB\-cdnvK\fR] [\fB\-b\ \fIsize\fR]
+\fBpax\fR [\fB\-cdnvKO\fR] [\fB\-b\ \fIsize\fR]
 [\fB\-f\ \fIfile\fR] [\fB\-s\ \fIreplstr\fR]
 [\fB\-x\ \fIhdr\fR] [\fIpatterns\fR]
 .HP
 .ad l
-\fBpax\fR \fB\-r\fR[\fBcdiknuvK\fR] [\fB\-b\ \fIsize\fR]
+\fBpax\fR \fB\-r\fR[\fBcdiknuvKO\fR] [\fB\-b\ \fIsize\fR]
 [\fB\-f\ \fIfile\fR]
 [\fB\-o\ \fIoptions\fR]
 [\fB\-p\ \fIpriv\fR] [\fB\-s\ \fIreplstr\fR]
 [\fB\-x\ \fIhdr\fR] [\fIpatterns\fR]
 .HP
 .ad l
-\fBpax\fR \fB\-w\fR[\fBadiHtuvLX\fR] [\fB\-b\ \fIsize\fR]
+\fBpax\fR \fB\-w\fR[\fBadiHtuvLOX\fR] [\fB\-b\ \fIsize\fR]
 [\fB\-f\ \fIfile\fR]
 [\fB\-o\ \fIoptions\fR]
 [\fB\-s\ \fIreplstr\fR]
 [\fB\-x\ \fIhdr\fR] [\fIfiles\fR]
 .HP
 .ad l
-\fBpax\fR \fB\-rw\fR[\fBdiHklntuvLX\fR]
+\fBpax\fR \fB\-rw\fR[\fBdiHklntuvLOX\fR]
 [\fB\-p\ \fIpriv\fR] [\fB\-s\ \fIreplstr\fR]
 [\fIfiles\fR] \fIdirectory\fR
 .br
@@ -275,6 +275,9 @@ is selected, the following are ignored.
 .TP
 \fB\-o\ \fIoption\fB,\fR[\fIoption\fB,\fR\|...]
 Specifies options as described for \fI\-x pax\fR.
+.TP
+.B \-O
+Disable interactive mode.
 .TP
 \fB\-p\ \fIstring\fR
 Specifies which file modes are to be preserved or ignored.
